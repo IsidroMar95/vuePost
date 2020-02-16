@@ -1,8 +1,32 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Router from 'vue-router'
 
-Vue.config.productionTip = false
+import './assets/css/tailwind.css'
+import App from './App.vue'
+import Home from './views/Home'
+import SinglePost from './views/SinglePost'
+
+Vue.use(Router)
+
+const router = new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: SinglePost,
+      props: true
+    }
+  ],
+  mode: 'history'
+})
 
 new Vue({
+  el: '#app',
   render: h => h(App),
-}).$mount('#app')
+  router
+})
